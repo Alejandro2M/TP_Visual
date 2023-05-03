@@ -1,0 +1,116 @@
+<div id="app"></div>
+
+
+<h1>Trabajo práctico</h1>
+
+<span class="negrita">Nombre:</span> Alejandro Martin Montalvo
+
+<br />
+
+<span class="negrita">URL:</span> 
+
+  <a href="https://js-4hqscu.stackblitz.io" target="_blank">
+
+    https://js-4hqscu.stackblitz.io
+
+  </a>
+
+<br />
+
+<span class="negrita">GitHub:</span> 
+
+<a href="https://github.com/Alejandro2M/08MBID---Visualizacion-de-Datos" target="_blank">
+
+  https://github.com/Alejandro2M/08MBID---Visualizacion-de-Datos
+
+</a>
+
+<br />
+<span class="negrita">Google Colab:</span> 
+
+<a href="https://colab.research.google.com/drive/18VtEp56Fu-HAowlO0VJxDOoxvQYA8jxi?usp=sharing" target="_blank">
+
+  https://colab.research.google.com/drive/18VtEp56Fu-HAowlO0VJxDOoxvQYA8jxi?usp=sharing
+
+</a>
+
+
+
+<h2>Introducción</h2>
+Actualmente se estima que en la galaxia en la que vivimos, la vía láctea, existen entre 100.000 y 400.000 millones de estrellas. Entre ellas está el sol, la estrella dominante en nuestro sistema planetario. Pero nuestro sistema planetario no es la norma, la mayoría de los sistemas planetarios se componen de estrellas binaria o ternarias. Además, se estima que solo en nuestra galaxia se encuentran en torno a 50.000 millones de planetas de los cuales 500 millones son potencialmente habitables. 
+</br></br> 
+Siguiendo esta línea el lanzamiento de la sonda espacial Kepler en 2009 supuso un gran avance en la detección de exoplanetas por lo que en este trabajo se tratará de dar respuesta a las siguientes preguntas:
+
+</br>
+</br>
+<span class="negrita">¿Cuáles son el tipo de estrellas que predominan en la galaxia? </span> 
+</br>
+</br>
+<span class="negrita">¿Se pueden extraer conclusiones del método de detección de Kepler?</span> 
+</br>
+</br>
+<span class="negrita">¿Existe alguna relación entre las variables observadas?</span>
+</br>
+</br>
+<span class="negrita">¿Como afecta la estrella a la vida en el sistema planetario?</span>
+</br>
+</br>
+La fuente principal de donde se obtienen los datos es el catálogo de objetos de interés de Kepler (Kepler Objects of Interest KOI). Se trata de un extenso catálogo de avistamientos recogidos por la sonda espacial Kepler desde marzo de 2009 hasta octubre de 2018. 
+Los datos se pueden descargar desde el catálogo de exoplanetas de la NASA
+
+</br> </br>
+
+<a href="https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=koi" target="_blank">
+
+  https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=koi
+
+</a>
+</br>
+</br>
+
+Además, el dataset fue dato de estudio en las asignaturas de minería y estadística.
+
+<h2>Metodología</h2>
+Primeramente, con ayuda de Google sheets se tomó la columna de temperatura efectiva de la estrella principal del sistema planetario, “koi_steff”, y se agruparon los valores de las temperaturas en 5 categorías con la función COUNTIFS para así poder realizar una clasificación morfológica de estas. Las categorías son las siguientes:
+</br></br>
+-T > 7500 K Estrella clases O, B color azul </br>
+-7500 K > T > 6000 K Estrella clase F color blanco  </br>
+-6000 K > T > 5200 K Estrella clase G color amarillo </br>
+-5200 K > T > 3700 K Estrella clase G color naranja </br>
+-T < 3700 K Estrella clase M color rojo </br> </br>
+Se trata de la clasificación morfológica de las estrellas en función de su temperatura, el color hace referencia al color aparente de la estrella. Por ejemplo, el sol presenta una temperatura de 5770 K por lo tanto su color aparente es amarillo y se trata de una estrella de tipo G.
+</br></br>
+Seguidamente, con ayuda del paquete seaborn se obtienen varias graficas determinantes para nuestro estudio. En estas gráficas se pone el foco de atención en las columnas del dataset “koi_disposition” que hace referencia a la índole del planeta sin ayuda de la sonda kepler: (confirmado, falso positivo o candidato) y ”koi_pdisposition” que muestra la índole del objeto que obtuvo la sonda Kepler (candidato o falso positivo). Es decir, “koi_pdisposition” confirma los exoplanetas avistados.
+</br></br>
+Finalmente se trata de estudiar si existe alguna dependencia entre las variables estelares y planetarias.
+
+<h2>Resultados</h2>
+Para la primera gráfica, una vez obtenido el número de estrellas que caen en cada tipo espectral se representa en un diagrama de sectores el porcentaje que representa respecto a la muestra total:</br>
+<iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRCr4objMGfK_EI3SLRmbJ6pPHPq-uYqksu9M9ESK6X6AqqnjHTcqgW6ASoqkUZ0-o-8gIq6XhUds8L/pubchart?oid=509408143&amp;format=interactive"></iframe> </br>
+Como se observa la mayoria de estrellas en nuestra galaxia (62.8%) son de tipo espectral G como el sol.
+</br></br>
+En la segunda gráfica se muestra la distribución de temperaturas de los planetas para varios casos. En la primera fila los planetas candidatos obtenidos por la sonda kepler y los falsos positivos en la segunda fila. Para cada fila, se muestra por columnas la índole del exoplaneta sin ayuda de la sonda kepler: confirmado, falso positivo y candidato. Se representan los histogramas para todos los casos:</br>
+
+<td style="width: 500px; height: 400px;"><img src=https://user-images.githubusercontent.com/126966568/235862032-06b526f3-04d9-4b11-8484-f74e913ef495.png></td> </br>
+Como era de esperar donde aparecen las distribuciones son en los recuadros de planetas confirmados por la sonda kepler y confirmados previamente, en los confirmados por la sonda kepler y candidatos previos y en los falsos positivos por ambos métodos.
+</br></br>
+De esta gráfica podemos extraer que la sonda Kepler ha sido útil a la hora de obtener nuevos exoplanetas ya que no aparecen excesivos terminos cruzados (planetas que confirmara y que previamente fuesen falsos positivos o viceversa).</br></br>
+Finalmente, estudiamos la relación entre varias variables del dataset concretamente entre las temperaturas de la estrella y el planeta y entre el radio y la temperatura estelar. Para el primer caso se obtuvo la siguiente gráfica:</br></br>
+
+<td style="width: 500px; height: 400px;"><img src=https://user-images.githubusercontent.com/126966568/235865050-e1c27604-14cc-424e-88ba-db6daee9a725.png></td> </br>
+Aunque no se observa ninguna correlación nítida, si podemos afirmar que las temperaturas son directamente proporcionales. Es decir, estrellas de mayor temperatura efectiva ocasionan que los planetas tengan temperaturas mayores.</br></br>
+
+Para el caso del radio de la estrella frente a la temperatura de la estrella se btuvo la siguiente gráfica: </br>
+<td style="width: 500px; height: 400px;"><img src=https://user-images.githubusercontent.com/126966568/235867207-c59b9a15-1058-45f4-8178-f4f72fe5a5bf.png></td>
+</br>
+En este caso si se obseva una fuerte correlación entre ambas que decae exponencialmente.
+</br>
+<h2>Conclusiones</h2>
+Podemos concluir que con el trabajo realizado se consiguieron contestar a las preguntas planteadas como objetivos: </br>
+Las estrellas predominantes en nuestra galaxia son de tipos similares al sol, la sonda Kepler ha obtenido muy buenos resultados y ha ayudado a la exploración espacial y además existe una fuerte relación entre el radio y la temperatura estelar. por otra parte, como se observó en la gráfica de la temperatura estelar frente a la planetaria, la estrella determina fuertemente la habitabilidad del sistema panetario. Estrellas de temperaturas altas ocasionan que los panetas también tengan temperaturas altas. Por tanto, este hecho nos ayuda a poder clasificar la habitabilidad de los exoplanetas en función de la temperatura estelar. 
+</br></br>
+Por último cabe mencionar que durante el estudio no se consideran la existencia de atmosferas en los planetas lo cual es determinante para asegurar la habitabilidad del planeta.
+
+<h2>Herramientas usadas</h2>
+-Google Sheets </br>
+-Python (Seaborn)
